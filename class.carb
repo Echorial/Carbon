@@ -1,0 +1,7 @@
+class ClassName inherits AnotherClass {
+	bool prop = false;
+
+	int method(string arg) {
+		this.prop = arg.length > 1;
+	}
+}
