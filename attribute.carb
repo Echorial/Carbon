@@ -1,0 +1,23 @@
+[AttributeKey = "AttributeValue",
+ Maps = {"Json": true},
+ Arrays = [1, 2, 3],
+ Bools = true,
+ Nums = 3.321]
+class Example inherits SomeInherits {
+	[CustomMarker] // Same as [CustomMarker = true]
+	int myProp = 123;
+}
+
+class SomeInherits {}
+
+#script carbon
+	Carbon.on("inherits.SomeInherits", void (Carbon.Class base, Carbon.Class to) => {
+		for (let int j in to.members) {
+			let member = to.members[j];
+			let attr = member.getAttribute("CustomMarker");
+			
+			if (typeOf(attr) != "null")
+				Carbon.Method.eval("bool hasMarkerFor " + member.name + "() { return true; }", to);
+		}
+	});
+#end script
