@@ -1,4 +1,4 @@
-class ClassName inherits AnotherClass {
+class ClassName inherits OtherClass, AnotherClass {
 	bool prop = false;
 
 	int method(string arg) {
