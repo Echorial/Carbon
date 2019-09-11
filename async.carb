@@ -1,0 +1,20 @@
+/*
+* Async is used to provide carbon code with a generic way to use native javascript functions.
+* Carbide may implement a proper event loop in the future and as such will rely heavily on async.
+*/
+
+class Testing {
+	fixed async int wait(int seconds) {
+		native javascript {
+			setTimeout(() => {@return(seconds)}, seconds * 1000);
+		} else { // The native else branch is not yet supported in Carbonite
+			return seconds;
+		}
+	}
+}
+
+class App {
+	int main(<string>array args) {
+		let result = Testing.wait(4);
+	}
+}
