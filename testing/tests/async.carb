@@ -1,0 +1,26 @@
+class Testing.Tests.Async extends Testing.Test {
+	override string name = "async";
+
+	override void run() {
+		let x = getOne();
+		this.assert(x == 1, "simple", "1 == 1 comparison from async method");
+
+		this.assert(getOne() == 1, "simple2", "1 == 1 comparison from async method inline");
+
+		this.assert(wait(2) == 2, "wait", "wait(2) == 2 comparison after inline wait call");
+	}
+
+	async int getOne() {
+		return 1;
+	}
+
+	async int wait(int waitFor) {
+		native javascript {
+			setTimeout(() => {@return(wait)}, wait);
+		}
+
+		#if true != platform.javascript
+			return seconds;
+		#end if
+	}
+}

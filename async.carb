@@ -16,5 +16,20 @@ class Testing {
 class App {
 	int main(<string>array args) {
 		let result = Testing.wait(4);
+
+		// Note: Async calls are pre fetched before being evaluated in expressions.
+		// As a result the following two waits will be called before the if statement.
+		// This goes againts normal logical rules and should be resolved in the future.
+
+		if (this.wait(2) != 2 and this.wait(1) == 1)
+			Console.log("True");
+
+		// Example of async logic flow:
+
+		let outputOfFirstWait = this.wait(2);
+		let outputOfSecondWait = this.wait(1);
+
+		if (outputOfFirstWait != 2 and outputOfSecondWait == 1)
+			Console.log("True");
 	}
 }

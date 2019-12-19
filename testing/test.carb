@@ -1,0 +1,19 @@
+#include "tests"
+#include "autoTest"
+
+namespace Testing {}
+namespace Testing.Tests {}
+
+class Testing.Suite {
+	<Testing.Test>map tests = new <Testing.Test>map();
+
+	void @constructor() {
+		
+	}
+}
+
+class Testing.Test {
+	string name = "test";
+	
+	abstract void run() {}
+}
